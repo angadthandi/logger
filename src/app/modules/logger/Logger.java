@@ -51,7 +51,7 @@ public class Logger implements ILogger {
     }
 
     private void logMessageByLevelCheck(int currMsgLevel, String message) {
-        if (currMsgLevel >= loggerMsgLevel) {
+        if (currMsgLevel > loggerMsgLevel) {
             return;
         }
 

@@ -1,5 +1,11 @@
 package client;
 
+import app.modules.command.file.File;
+import app.modules.command.stdout.Stdout;
+import app.modules.logger.Logger;
+import app.modules.loglevel.LogLevel;
+import app.modules.timestamp.TimeStampFormats;
+
 public class TestLogger {
 
     public static TestMetric Run() {
@@ -7,7 +13,15 @@ public class TestLogger {
         int totalPassed = 0;
         int totalFailed = 0;
 
-        if (TestLogAll()) {
+        if (TestLogToConsole()) {
+            totalTests += 1;
+            totalPassed += 1;
+        } else {
+            totalTests += 1;
+            totalFailed += 1;
+        }
+
+        if (TestLogToFile()) {
             totalTests += 1;
             totalPassed += 1;
         } else {
@@ -23,11 +37,44 @@ public class TestLogger {
         return t;
     }
 
-    public static boolean TestLogAll() {
+    public static boolean TestLogToConsole() {
         boolean pass = false;
 
         // SETUP ------------------------------------
+        Stdout console = new Stdout();
+        Logger logger = new Logger(
+            LogLevel.DEBUG, TimeStampFormats.YMDHIS, console
+        );
         // /SETUP ------------------------------------
+
+        logger.logFatal("Test Fatal message!");
+        logger.logError("Test Error message!");
+        logger.logWarn("Test Warning message!");
+        logger.logInfo("Test Info message!");
+        logger.logDebug("Test Debug message!");
+
+        pass = true;
+
+        return pass;
+    }
+
+    public static boolean TestLogToFile() {
+        boolean pass = false;
+
+        // SETUP ------------------------------------
+        File file = new File("");
+        Logger logger = new Logger(
+            LogLevel.DEBUG, TimeStampFormats.YMDHIS, file
+        );
+        // /SETUP ------------------------------------
+
+        logger.logFatal("Test Fatal message!");
+        logger.logError("Test Error message!");
+        logger.logWarn("Test Warning message!");
+        logger.logInfo("Test Info message!");
+        logger.logDebug("Test Debug message!");
+
+        pass = true;
 
         return pass;
     }

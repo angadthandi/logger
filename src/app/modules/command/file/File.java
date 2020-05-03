@@ -24,8 +24,8 @@ public class File implements ICommand {
         String currTime = TimeStamp.getCurrentTime(timestampFormat);
 
         try {
-            FileWriter myWriter = new FileWriter(filePath);
-            myWriter.write(currTime + ": " + message);
+            FileWriter myWriter = new FileWriter(filePath, true);
+            myWriter.write(currTime + ": " + message + "\r\n");
             myWriter.close();
         } catch (IOException e) {
             System.out.println(e.toString());

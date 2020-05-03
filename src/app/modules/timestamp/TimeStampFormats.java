@@ -1,8 +1,8 @@
 package app.modules.timestamp;
 
 public enum TimeStampFormats {
-    YMD("Y-m-d"),
-    YMDHIS("Y-m-d H:i:s");
+    YMD("Y-MM-dd"),
+    YMDHIS("Y-MM-dd hh:mm:ss");
 
     private String value;
 
