@@ -7,26 +7,38 @@ https://softwareengineering.stackexchange.com/a/221493
 
 ---
 
-## LogLevelEnum Enum
+## LogLevel Enum
  #### Attributes:
  - level enum // __FATAL, ERROR, WARN, INFO, DEBUG__
 
-## TimeStampEnum Enum
+## TimeStampFormats Enum
  #### Attributes:
  - format enum // __YMD, YMDHIS__
 
 ---
 
+## TimeStamp Class
+ #### Attributes:
+ - formatType TimeStampFormats
+ #### Methods:
+ - String getFormat()
+ - TimeStamp(formatType TimeStampFormats) \
+// constructor - sets the format type
+
+---
+
 ## ILogger Interface
  #### Methods:
- - logMessage(String message, LogLeveLEnum level)
+ - logMessage(String message)
 
 ## Logger Class implements ILogger
  #### Attributes:
- - logLevel LogLevelEnum
+ - logLevel LogLevel
+ - timestampFormat TimeStampFormats
+ - command ICommand
  #### Methods:
- - logMessage(String message, LogLeveLEnum level)
- - Logger(logLevel LogLevelEnum, TimeStampEnum timestampFormat, ICommand command) \
+ - logMessage(String message)
+ - Logger(logLevel LogLevel, TimeStampEnum timestampFormat, ICommand command) \
 // constructor - use __Singleton__ Object
 
 ---
