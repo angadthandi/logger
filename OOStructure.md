@@ -36,6 +36,8 @@ https://softwareengineering.stackexchange.com/a/221493
  - command ICommand
  #### Methods:
  - handleLogMessage(String message)
+ - CommandContext(ICommand command) \
+// constructor - sets command attribute to passed in command object
 
 ---
 
