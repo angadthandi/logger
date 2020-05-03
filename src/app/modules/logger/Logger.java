@@ -8,6 +8,7 @@ import app.modules.timestamp.TimeStampFormats;
 public class Logger implements ILogger {
 
     private LogLevel logLevel;
+    private int loggerMsgLevel;
     private TimeStampFormats timestampFormat;
     private ICommand command;
     private CommandContext context;
@@ -20,11 +21,57 @@ public class Logger implements ILogger {
         logLevel = level;
         timestampFormat = format;
         command = cmd;
+        loggerMsgLevel = logLevel.getValue();
 
         context = new CommandContext( timestampFormat.getValue(), cmd );
     }
 
-    public void logMessage(String message) {
+    // public void logMessage(String message) {
+    //     context.handleLogMessage(message);
+    // }
+
+    public void logFatal(String message) {
+        logMessageByLevelCheck(LogLevel.FATAL.getValue(), message);
+    }
+
+    public void logError(String message) {
+        logMessageByLevelCheck(LogLevel.ERROR.getValue(), message);
+    }
+
+    public void logWarn(String message) {
+        logMessageByLevelCheck(LogLevel.WARN.getValue(), message);
+    }
+
+    public void logInfo(String message) {
+        logMessageByLevelCheck(LogLevel.INFO.getValue(), message);
+    }
+
+    public void logDebug(String message) {
+        logMessageByLevelCheck(LogLevel.DEBUG.getValue(), message);
+    }
+
+    private void logMessageByLevelCheck(int currMsgLevel, String message) {
+        if (currMsgLevel >= loggerMsgLevel) {
+            return;
+        }
+
         context.handleLogMessage(message);
     }
+
+    // SETTERS
+
+    public void setLogLevel(LogLevel level) {
+        logLevel = level;
+    }
+
+    public void setTimeStampFormat(TimeStampFormats format) {
+        timestampFormat = format;
+    }
+
+    public void setCommand(ICommand cmd) {
+        command = cmd;
+
+        context = new CommandContext( timestampFormat.getValue(), cmd );
+    }
+
 }

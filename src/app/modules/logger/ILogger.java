@@ -1,7 +1,10 @@
 package app.modules.logger;
 
-import app.modules.loglevel.LogLevel;
-
 public interface ILogger {
-    void logMessage(String message);
+    // void logMessage(String message);
+    void logFatal(String message);
+    void logError(String message);
+    void logWarn(String message);
+    void logInfo(String message);
+    void logDebug(String message);
 }
