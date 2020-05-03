@@ -21,7 +21,7 @@ public class Logger implements ILogger {
         timestampFormat = format;
         command = cmd;
 
-        context = new CommandContext(cmd);
+        context = new CommandContext( timestampFormat.getValue(), cmd );
     }
 
     public void logMessage(String message) {

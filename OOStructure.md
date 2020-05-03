@@ -36,6 +36,7 @@ https://softwareengineering.stackexchange.com/a/221493
  - logLevel LogLevel
  - timestampFormat TimeStampFormats
  - command ICommand
+ - context CommandContext
  #### Methods:
  - logMessage(String message)
  - Logger(logLevel LogLevel, TimeStampEnum timestampFormat, ICommand command) \
@@ -48,26 +49,26 @@ https://softwareengineering.stackexchange.com/a/221493
  - command ICommand
  #### Methods:
  - handleLogMessage(String message)
- - CommandContext(ICommand command) \
+ - CommandContext(String timestampFormat, ICommand command) \
 // constructor - sets command attribute to passed in command object
 
 ---
 
 ## ICommand Interface
  #### Methods:
- - handleMessage(String message)
+ - handleMessage(String message, String timestampFormat)
 
 ### Stdout Class implements ICommand
  #### Methods:
- - handleMessage(String message)
+ - handleMessage(String message, String timestampFormat)
 
 ### File Class implements ICommand
  #### Methods:
- - handleMessage(String message)
+ - handleMessage(String message, String timestampFormat)
 
 ### Database Class implements ICommand
  #### Methods:
- - handleMessage(String message)
+ - handleMessage(String message, String timestampFormat)
 
 ---
 
