@@ -29,6 +29,14 @@ public class TestLogger {
             totalFailed += 1;
         }
 
+        if (TestLogFilterMessages()) {
+            totalTests += 1;
+            totalPassed += 1;
+        } else {
+            totalTests += 1;
+            totalFailed += 1;
+        }
+
         TestMetric t = new TestMetric();
         t.Total = totalTests;
         t.Pass = totalPassed;
@@ -65,6 +73,27 @@ public class TestLogger {
         File file = new File("");
         Logger logger = new Logger(
             LogLevel.DEBUG, TimeStampFormats.YMDHIS, file
+        );
+        // /SETUP ------------------------------------
+
+        logger.logFatal("Test Fatal message!");
+        logger.logError("Test Error message!");
+        logger.logWarn("Test Warning message!");
+        logger.logInfo("Test Info message!");
+        logger.logDebug("Test Debug message!");
+
+        pass = true;
+
+        return pass;
+    }
+
+    public static boolean TestLogFilterMessages() {
+        boolean pass = false;
+
+        // SETUP ------------------------------------
+        File file = new File("");
+        Logger logger = new Logger(
+            LogLevel.WARN, TimeStampFormats.YMD, file
         );
         // /SETUP ------------------------------------
 

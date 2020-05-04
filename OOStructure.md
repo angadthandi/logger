@@ -49,26 +49,26 @@ https://softwareengineering.stackexchange.com/a/221493
  - command ICommand
  #### Methods:
  - handleLogMessage(String message)
- - CommandContext(String timestampFormat, ICommand command) \
+ - CommandContext(ICommand command) \
 // constructor - sets command attribute to passed in command object
 
 ---
 
 ## ICommand Interface
  #### Methods:
- - handleMessage(String message, String timestampFormat)
+ - handleMessage(String message)
 
 ### Stdout Class implements ICommand
  #### Methods:
- - handleMessage(String message, String timestampFormat)
+ - handleMessage(String message)
 
 ### File Class implements ICommand
  #### Methods:
- - handleMessage(String message, String timestampFormat)
+ - handleMessage(String message)
 
 ### Database Class implements ICommand
  #### Methods:
- - handleMessage(String message, String timestampFormat)
+ - handleMessage(String message)
 
 ---
 

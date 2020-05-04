@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import app.modules.command.ICommand;
-import app.modules.timestamp.TimeStamp;
 
 public class File implements ICommand {
 
@@ -20,12 +19,10 @@ public class File implements ICommand {
         }
     }
 
-    public void handleMessage(String message, String timestampFormat) {
-        String currTime = TimeStamp.getCurrentTime(timestampFormat);
-
+    public void handleMessage(String message) {
         try {
             FileWriter myWriter = new FileWriter(filePath, true);
-            myWriter.write(currTime + ": " + message + "\r\n");
+            myWriter.write(message + "\r\n");
             myWriter.close();
         } catch (IOException e) {
             System.out.println(e.toString());

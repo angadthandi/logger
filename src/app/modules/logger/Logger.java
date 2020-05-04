@@ -3,6 +3,7 @@ package app.modules.logger;
 import app.modules.command.CommandContext;
 import app.modules.command.ICommand;
 import app.modules.loglevel.LogLevel;
+import app.modules.timestamp.TimeStamp;
 import app.modules.timestamp.TimeStampFormats;
 
 public class Logger implements ILogger {
@@ -23,7 +24,7 @@ public class Logger implements ILogger {
         command = cmd;
         loggerMsgLevel = logLevel.getValue();
 
-        context = new CommandContext( timestampFormat.getValue(), cmd );
+        context = new CommandContext(cmd);
     }
 
     // public void logMessage(String message) {
@@ -55,7 +56,10 @@ public class Logger implements ILogger {
             return;
         }
 
-        context.handleLogMessage(message);
+        String currTime = TimeStamp.getCurrentTime(timestampFormat.getValue());
+        String formattedMsg = currTime + ": " + message;
+
+        context.handleLogMessage(formattedMsg);
     }
 
     // SETTERS
@@ -71,7 +75,7 @@ public class Logger implements ILogger {
     public void setCommand(ICommand cmd) {
         command = cmd;
 
-        context = new CommandContext( timestampFormat.getValue(), cmd );
+        context = new CommandContext(cmd);
     }
 
 }
